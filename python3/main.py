@@ -14,10 +14,13 @@ def generate_grid(rows, columns):
 	return grid
 	
 	
-def plant_seeds(plane, seeds):
-	for i in seeds:
-		plane[ i[0] ][ i[1] ] = 1
-	return plane
+def prepare_grid(grid, config_matrix):
+	"""
+	Prepares a grid using a config matrix, setting up alive cells.
+	"""
+	for i in config_matrix:
+		grid[ i[0] ][ i[1] ] = 1
+	return grid
 	
 	
 def parse_row(plane, row, x, y):
@@ -73,5 +76,5 @@ def walk(plane, turns):
 if __name__ == '__main__':
 	r = generate_grid(3,3)
 	s = [ [1,0], [1,1], [1,2]]
-	plant_seeds(r, s)
+	prepare_grid(r, s)
 	walk(r, 3)
