@@ -3,14 +3,17 @@
 import copy
 
 
-def make_map(x,y):
-	plane = []
-	for i in range(0, x):
-		shard = [0 for k in range(0,y)]
-		plane.append(shard)
-	return plane
+def generate_grid(rows, columns):
+	"""
+	Generates a grid of nested lists of size x*y
+	"""
+	grid = []
+	for row in range(0, rows):
+		column = [0 for k in range(0, columns)]
+		grid.append(column)
+	return grid
 	
-
+	
 def plant_seeds(plane, seeds):
 	for i in seeds:
 		plane[ i[0] ][ i[1] ] = 1
@@ -68,7 +71,7 @@ def walk(plane, turns):
 
 
 if __name__ == '__main__':
-	r = make_map(3,3)
+	r = generate_grid(3,3)
 	s = [ [1,0], [1,1], [1,2]]
 	plant_seeds(r, s)
 	walk(r, 3)
