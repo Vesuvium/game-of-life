@@ -18,6 +18,14 @@ def columns():
   return random.randint(1,10)
 
 
+@pytest.fixture
+def grid(rows, columns):
+  grid = []
+  for i in range(0, rows):
+    grid.append( [0 for k in range(0,columns)] )
+  return grid
+
+
 def test_generate_grid(rows, columns):
   """
   Tests the size of a generated grid.
