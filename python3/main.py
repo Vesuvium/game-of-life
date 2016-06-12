@@ -23,18 +23,13 @@ def prepare_grid(grid, config_matrix):
 	return grid
 	
 	
-def parse_row(plane, row, x, y):
-	score = 0
-	if row != x and plane[row][y] != 0:
-		score += 1
-		
-	if y > 0:
-		if plane[row][y-1] != 0:
-				score += 1
-		
-	if y < len(plane[row])-1:
-		if plane[row][y+1] != 0:
-			score += 1
+def parse_row(grid, row, x, y):
+	"""
+	Parses a grid's row, counting live cells.
+	"""
+	score = grid[row].count(1)
+	if row == x and grid[x][y] == 1:
+		return score - 1
 	return score
 	
 	
