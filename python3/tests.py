@@ -8,17 +8,17 @@ import pytest
 from main import generate_grid, prepare_grid, parse_row
 
 
-@pytest.fixture
+@pytest.fixture(scope='function')
 def rows():
   return random.randint(1,10)
 
 
-@pytest.fixture
+@pytest.fixture(scope='function')
 def columns():
   return random.randint(1,10)
 
 
-@pytest.fixture
+@pytest.fixture(scope='function')
 def grid(rows, columns):
   grid = []
   for i in range(0, rows):
