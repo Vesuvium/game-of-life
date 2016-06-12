@@ -45,13 +45,10 @@ def test_generate_grid_values(rows, columns):
       assert cell == 0
       
       
-def test_prepare_grid():
+def test_prepare_grid(grid, rows, columns):
   """
   Tests whether prepare_grid can correctly use a config matrix to setup values.
   """
-  grid = [ [0,0,0], [0,0,0], [0,0,0] ]
-  rows = len(grid)
-  columns = len(grid[0])
   config_matrix = []
   # generates a random config matrix
   for i in range(0, random.randint(1, rows*columns)):
