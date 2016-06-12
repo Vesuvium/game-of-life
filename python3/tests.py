@@ -5,7 +5,7 @@ import random
 import pytest
 
 
-from main import generate_grid, prepare_grid, parse_row
+from main import generate_grid, prepare_grid, parse_row, cell_score
 
 
 @pytest.fixture(scope='function')
@@ -79,4 +79,20 @@ def test_parse_row(grid):
 		else:
 			assert score == grid[counter].count(1)
 		counter += 1
+		
+		
+@pytest.mark.parametrize('params', [
+	{ 'grid':[ [0, 0, 1], [0, 0, 1], [0,0,1] ] , 'x':1, 'y':1, 'score':3 },
+	{ 'grid':[ [0, 0, 1], [0, 0, 1], [0,0,0] ] , 'x':0, 'y':1, 'score':2 },
+	{ 'grid':[ [0, 0, 0], [0, 0, 0], [0,1,1] ] , 'x':2, 'y':2, 'score':1 }
+])
+def test_cell_score(params):
+	"""
+	Tests whether cell_score can calculate a cell's score.
+	"""
+	grid = params['grid']
+	x = params['x']
+	y = params['y']
+	score = params['score']
+	assert cell_score(grid, x, y) == score
     
