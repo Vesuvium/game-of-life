@@ -33,18 +33,17 @@ def parse_row(grid, row, x, y):
 	return score
 	
 	
-def neighbours(plane, x, y):
+def cell_score(grid, x, y):
+	"""
+	Calculates the score of a cell. A cell's score is 
+	the number of neighbouring cell with a value of 1.
+	"""
 	score = 0
-	
+	score += parse_row(grid, x, x, y)
 	if x > 0:
-		row = x - 1
-		score += parse_row(plane, row, x, y)
-			
-	if x < len(plane[x])-1:
-		row = x + 1
-		score += parse_row(plane, row, x, y)
-	
-	score += parse_row(plane, x, x, y)
+		score += parse_row(grid, x-1, x, y)
+	if x < len(grid[x]) - 1:
+		score += parse_row(grid, x+1, x, y)
 	return score
 
 
