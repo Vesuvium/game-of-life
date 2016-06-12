@@ -5,7 +5,7 @@ import random
 import pytest
 
 
-from main import generate_grid, prepare_grid
+from main import generate_grid, prepare_grid, parse_row
 
 
 @pytest.fixture
@@ -57,4 +57,17 @@ def test_prepare_grid(grid, rows, columns):
   new_grid = prepare_grid(grid, config_matrix)
   for row in config_matrix:
     assert new_grid[ row[0] ][row[1]] == 1
+    
+    
+def test_parse_row(grid):
+	"""
+	Tests whether parse_row can correctly parse a grid's row
+	"""
+	x = random.randint(0, len(grid)-1)
+	y = random.randint(0, len(grid[x])-1)
+	counter = 0
+	while counter < len(grid):
+		score = parse_row(grid, counter, x, y)
+		assert score == grid[counter].count(1)
+		counter += 1
     
