@@ -70,9 +70,13 @@ def test_parse_row(grid):
 	"""
 	x = random.randint(0, len(grid)-1)
 	y = random.randint(0, len(grid[x])-1)
+	grid[x][y] = 1
 	counter = 0
 	while counter < len(grid):
 		score = parse_row(grid, counter, x, y)
-		assert score == grid[counter].count(1)
+		if counter == x and grid[x][y] == 1:
+			assert score == grid[counter].count(1) - 1
+		else:
+			assert score == grid[counter].count(1)
 		counter += 1
     
