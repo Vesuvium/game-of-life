@@ -24,7 +24,17 @@ def grid(rows, columns):
   for i in range(0, rows):
     grid.append( [0 for k in range(0,columns)] )
   return grid
-
+  
+  
+@pytest.fixture(scope='function')
+def config_matrix(rows, columns):
+	# generates a random config matrix
+	config_matrix = []
+	for i in range(0, random.randint(1, rows*columns)):
+		random_cell = [random.randint(0, rows-1), random.randint(0, columns-1)]
+		config_matrix.append(random_cell)
+	return config_matrix
+	
 
 def test_generate_grid(rows, columns):
   """
