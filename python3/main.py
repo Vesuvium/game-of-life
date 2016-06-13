@@ -63,6 +63,12 @@ def next_generation(grid):
 			y += 1
 		x += 1
 	return grid
+	
+
+def next_generations(grid, generations):
+	for i in range(0, generations):
+		grid = next_generation(grid)
+	return grid
 
 
 if __name__ == '__main__':
