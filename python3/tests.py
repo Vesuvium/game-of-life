@@ -5,7 +5,7 @@ import random
 import pytest
 
 
-from main import generate_grid, prepare_grid, parse_row, cell_score
+from main import generate_grid, prepare_grid, parse_row, cell_score, next_generation
 
 
 @pytest.fixture(scope='function')
@@ -80,7 +80,7 @@ def test_parse_row(grid):
 			assert score == grid[counter].count(1)
 		counter += 1
 		
-		
+
 @pytest.mark.parametrize('params', [
 	{ 'grid':[ [0, 0, 1], [0, 0, 1], [0,0,1] ] , 'x':1, 'y':1, 'score':3 },
 	{ 'grid':[ [0, 0, 1], [0, 0, 1], [0,0,0] ] , 'x':0, 'y':1, 'score':2 },
@@ -95,4 +95,19 @@ def test_cell_score(params):
 	y = params['y']
 	score = params['score']
 	assert cell_score(grid, x, y) == score
+	
+	
+@pytest.mark.parametrize('params', [
+	{ 'grid':[ [0, 0, 0], [0, 0, 0], [0,0,0] ] , 'result':[ [0, 0, 0], [0, 0, 0], [0,0,0] ]},
+	{ 'grid':[ [0, 0, 0], [0, 1, 0], [0,0,0] ] , 'result':[ [0, 0, 0], [0, 0, 0], [0,0,0] ]},
+	{ 'grid':[ [1, 0, 0], [1, 1, 0], [0,0,0] ] , 'result':[ [1, 1, 0], [1, 1, 0], [0,0,0] ]}
+])
+def test_next_generation(params):
+	"""
+	Tests whether next_generation can correctly move a grid to the next generation.
+	"""
+	grid = params['grid']
+	result = params['result']
+	assert next_generation(grid) == result
+
     
