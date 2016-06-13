@@ -36,7 +36,7 @@ def parse_row(grid, row, x, y):
 def cell_score(grid, x, y):
 	"""
 	Calculates the score of a cell. A cell's score is 
-	the number of neighbouring cell with a value of 1.
+	the number of neighbouring cells with a value of 1.
 	"""
 	score = 0
 	score += parse_row(grid, x, x, y)
