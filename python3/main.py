@@ -47,24 +47,22 @@ def cell_score(grid, x, y):
 	return score
 
 
-def walk(plane, turns):
-	original_plane = copy.deepcopy(plane)
+def next_generation(grid):
+	"""
+	Calculates the next generation of a given grid.
+	"""
 	x = 0
-	y = 0
-	for t in range(0, turns):
-		for i in plane:
-			for k in i:
-				score = neighbours(original_plane, x, y)
-				if score <= 1 or score >= 4:
-					plane[x][y] = 0
-				elif score == 3:
-					plane[x][y] = 1
-				y += 1
-			x += 1
-			y = 0
-		x = 0
-		original_plane = copy.deepcopy(plane)
-		print(original_plane)
+	while x < len(grid):
+		y = 0
+		while y < len(grid[x]):
+			score = cell_score(grid, x, y)
+			if score <= 1 or score >= 4:
+				grid[x][y] = 0
+			elif score == 3:
+				grid[x][y] = 1
+			y += 1
+		x += 1
+	return grid
 
 
 if __name__ == '__main__':
