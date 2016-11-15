@@ -19,7 +19,7 @@ def prepare_grid(grid, config_matrix):
 	Prepares a grid using a config matrix, setting up alive cells.
 	"""
 	for i in config_matrix:
-		grid[ i[0] ][ i[1] ] = 1
+		grid[i[0]][i[1]] = 1
 	return grid
 
 
@@ -41,9 +41,9 @@ def cell_score(grid, x, y):
 	score = 0
 	score += parse_row(grid, x, x, y)
 	if x > 0:
-		score += parse_row(grid, x-1, x, y)
+		score += parse_row(grid, x - 1, x, y)
 	if x < len(grid[x]) - 1:
-		score += parse_row(grid, x+1, x, y)
+		score += parse_row(grid, x + 1, x, y)
 	return score
 
 
