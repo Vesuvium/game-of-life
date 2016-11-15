@@ -12,8 +12,8 @@ def generate_grid(rows, columns):
 		column = [0 for k in range(0, columns)]
 		grid.append(column)
 	return grid
-	
-	
+
+
 def prepare_grid(grid, config_matrix):
 	"""
 	Prepares a grid using a config matrix, setting up alive cells.
@@ -21,8 +21,8 @@ def prepare_grid(grid, config_matrix):
 	for i in config_matrix:
 		grid[ i[0] ][ i[1] ] = 1
 	return grid
-	
-	
+
+
 def parse_row(grid, row, x, y):
 	"""
 	Parses a grid's row, counting live cells.
@@ -31,11 +31,11 @@ def parse_row(grid, row, x, y):
 	if row == x and grid[x][y] == 1:
 		return score - 1
 	return score
-	
-	
+
+
 def cell_score(grid, x, y):
 	"""
-	Calculates the score of a cell. A cell's score is 
+	Calculates the score of a cell. A cell's score is
 	the number of neighbouring cells with a value of 1.
 	"""
 	score = 0
@@ -63,7 +63,7 @@ def next_generation(grid):
 			y += 1
 		x += 1
 	return grid
-	
+
 
 def next_generations(grid, generations):
 	for i in range(0, generations):
@@ -71,8 +71,12 @@ def next_generations(grid, generations):
 	return grid
 
 
+def run():
+	grid = generate_grid(3, 3)
+	seed = [[1, 0], [1, 1], [1, 2]]
+	prepare_grid(grid, seed)
+	next_generations(grid, 3)
+
+
 if __name__ == '__main__':
-	r = generate_grid(3,3)
-	s = [ [1,0], [1,1], [1,2]]
-	prepare_grid(r, s)
-	walk(r, 3)
+	run()
